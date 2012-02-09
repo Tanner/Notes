@@ -45,14 +45,21 @@ init = (function() {
 			lastY = y;
 		}
 
-		// (var i = 0; i < layers[l].length-1; i++) {
+		// for (var i = 0; i < layers[l].length-1; i++) {
 		$("#canvas").drawLine({
 			strokeStyle: "#000",
 			strokeWidth: 10,
 			rounded: true,
 			x1: x, y1: y,
 			x2: lastX, y2: lastY
-		})
+		});
+
+		// $("#canvas").draw(function(ctx) {
+		// 	ctx.beginPath();
+		// 	ctx.moveTo(x, y);
+		// 	ctx.lineTo(lastX, lastY);
+		// 	ctx.stroke();
+		// });
 
 		lastX = x;
 		lastY = y;
