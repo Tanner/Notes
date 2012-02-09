@@ -32,7 +32,7 @@ init = (function() {
 	});
 
 	// handle resizing
-	// $(window).resize(resizeCanvas());
+	$(window).resize(resizeCanvas());
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -45,7 +45,6 @@ init = (function() {
 			lastY = y;
 		}
 
-		// for (var i = 0; i < layers[l].length-1; i++) {
 		$("#canvas").drawLine({
 			strokeStyle: "#000",
 			strokeWidth: 10,
@@ -53,13 +52,6 @@ init = (function() {
 			x1: x, y1: y,
 			x2: lastX, y2: lastY
 		});
-
-		// $("#canvas").draw(function(ctx) {
-		// 	ctx.beginPath();
-		// 	ctx.moveTo(x, y);
-		// 	ctx.lineTo(lastX, lastY);
-		// 	ctx.stroke();
-		// });
 
 		lastX = x;
 		lastY = y;
