@@ -12,8 +12,8 @@ var POINT = (function(x, y) {
 });
 
 init = (function() {
-	var layers = new Array();
-	layers[0] = new Array();
+	var lastX = null;
+	var laxtY = null;
 
 	// touch events
 	$("body").on('touchstart', function(e) {
@@ -27,37 +27,34 @@ init = (function() {
 	});
 
 	$("body").on('touchend', function(e) {
-		layers[layers.length] = new Array();
+		lastX = null;
+		lastY = null;
 	});
 
 	// handle resizing
-	$(window).resize(resizeCanvas());
+	// $(window).resize(resizeCanvas());
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        render(); 
     }
     resizeCanvas();
 
 	function addPoint(x, y) {
-		var point = POINT(x, y);
-		layers[layers.length-1][layers[layers.length-1].length] = point;
-	}
-
-	// rendering
-	setInterval(function() { render() }, 10);
-	function render() {
-		for (l in layers) {
-			for (var i = 0; i < layers[l].length-1; i++) {
-				$("#canvas").drawLine({
-					strokeStyle: "#000",
-					strokeWidth: 10,
-					rounded: true,
-					x1: layers[l][i].x, y1: layers[l][i].y,
-					x2: layers[l][i+1].x, y2: layers[l][i+1].y
-				})
-			}
+		if (lastX == null || lastY == null) {
+			lastX = x;
+			lastY = y;
 		}
+
+		// (var i = 0; i < layers[l].length-1; i++) {
+		$("#canvas").drawLine({
+			strokeStyle: "#000",
+			strokeWidth: 10,
+			rounded: true,
+			x1: x, y1: y,
+			x2: lastX, y2: lastY
+		})
+
+		lastX = x;
+		lastY = y;
 	}
 });
