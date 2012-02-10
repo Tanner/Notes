@@ -32,11 +32,10 @@ init = (function() {
 	});
 
 	// handle resizing
-	$(window).resize(resizeCanvas());
     function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
+        $("#canvas")[0].width = Math.max(window.innerWidth, window.innerHeight);
+        $("#canvas")[0].height = Math.max(window.innerWidth, window.innerHeight);
+    };
     resizeCanvas();
 
 	function addPoint(x, y) {
