@@ -1,0 +1,140 @@
+* {
+	padding: 0;
+	margin: 0;
+
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-moz-tap-highlight-color: rgba(0,0,0,0);
+	tap-highlight-color: rgba(0,0,0,0);
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+
+	cursor: default !important;
+}
+
+html {
+	height: 100%;
+
+	overflow: hidden;
+}
+
+body {
+	height: 100%;
+
+	font-family: Helvetica, sans-serif;
+	background-color: rgba(0, 0, 0, .5) !important;
+	font-size: 21px;
+
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	transform: translateZ(0);
+
+	overflow: hidden;
+}
+
+#wrapper {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	translateZ: 0;
+}
+
+#layer1 {
+	background: #fff;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+}
+
+#layer2 {
+	z-index: 1000;
+}
+
+#draw-nav {
+	width: 100%;
+	height: 236px;
+	position: absolute;
+	bottom: 0;
+	margin: 0;
+
+	background: #324868; /* Old browsers */
+	background: -moz-linear-gradient(top,  #324868 0%, #22314a 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#324868), color-stop(100%,#22314a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #324868 0%,#22314a 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #324868 0%,#22314a 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #324868 0%,#22314a 100%); /* IE10+ */
+	background: linear-gradient(top,  #324868 0%,#22314a 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#324868', endColorstr='#22314a',GradientType=0 ); /* IE6-9 */
+
+	box-shadow: inset 0 10px 10px rgba(0, 0, 0, .25);
+
+	font-size: 0;
+}
+
+#draw-nav ul {
+	height: 100%;
+	margin: 0 auto;
+}
+
+#draw-nav li {
+	height: 100%;
+	width: 50%;
+	float: left;
+	position: relative;
+
+	box-shadow: inset 1px 0 0 rgba(255, 255, 255, .1),
+				inset -1px 0 0 rgba(0, 0, 0, .2);
+}
+
+#draw-nav li:active {
+	background-color: rgba(0, 0, 0, .1);
+}
+
+#draw-nav li span {
+	width: 100px;
+	height: 50px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -25px 0 0 -50px;
+	overflow: hidden;
+
+	text-align: center;
+
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0 -1px 0 #000;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 50px;
+}
+
+@media only screen and (orientation: landscape) {
+	#draw-nav {
+		height: 100%;
+		width: 256px;
+		right: 0;
+		top: 0;
+
+		box-shadow: inset 10px 0 10px rgba(0, 0, 0, .25);
+	}
+
+	#draw-nav li {
+		width: 100%;
+		height: 50%;
+
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1),
+					inset 0 -1px 0 rgba(0, 0, 0, .2);
+	}
+}

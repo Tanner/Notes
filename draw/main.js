@@ -45,10 +45,17 @@ init = (function() {
 		down = false;
 	});
 
-	// handle resizing
+	// set canvas size
+	var minSide = Math.min(window.innerWidth, window.innerHeight);
+	var maxSide = Math.max(window.innerWidth, window.innerHeight);
     $("canvas").each(function() {
-	    $(this)[0].width = Math.min(window.innerWidth, window.innerHeight);
-	    $(this)[0].height = Math.min(window.innerWidth, window.innerHeight);
+	    $(this)[0].width = minSide;
+	    $(this)[0].height = minSide
+	});
+
+	// draw buttons
+	$("#draw-nav .clear").on("click", function() {
+		$("canvas").clearCanvas();
 	});
 
 	function addPoint(point) {
