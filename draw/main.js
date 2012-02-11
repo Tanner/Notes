@@ -12,10 +12,10 @@ var POINT = (function(x, y) {
 });
 
 init = (function() {
-	var lastX = null;
-	var laxtY = null;
-
+	var lastPoint = null;
 	var down = false;
+
+	var drawingPoints = [];
 
 	// touch events
 	$("body").on('touchstart mousedown', function(e) {
@@ -28,40 +28,61 @@ init = (function() {
 		}
 
 		var touch = e.originalEvent.touches ? e.originalEvent.touches[0] : e;
-		addPoint(touch.pageX, touch.pageY);
+		addPoint(POINT(touch.pageX, touch.pageY));
 
 		e.preventDefault();
 	});
 
 	$("body").on('touchend mouseup mouseleave', function(e) {
-		lastX = null;
-		lastY = null;
+		$("#layer2").clearCanvas();
 
+		drawBezier(drawingPoints);
+		drawingPoints = [];
+
+		lastPoint = null;
 		down = false;
 	});
 
 	// handle resizing
-    function resizeCanvas() {
-        $("#canvas")[0].width = Math.max(window.innerWidth, window.innerHeight);
-        $("#canvas")[0].height = Math.max(window.innerWidth, window.innerHeight);
-    };
-    resizeCanvas();
+    $("canvas").each(function() {
+	    $(this)[0].width = Math.min(window.innerWidth, window.innerHeight);
+	    $(this)[0].height = Math.min(window.innerWidth, window.innerHeight);
+	});
 
-	function addPoint(x, y) {
-		if (lastX == null || lastY == null) {
-			lastX = x;
-			lastY = y;
+	function addPoint(point) {
+		if (lastPoint == null) {
+			lastPoint = point;
 		}
 
-		$("#canvas").drawLine({
+		drawingPoints[drawingPoints.length] = point;
+
+		$("#layer2").drawLine({
 			strokeStyle: "#000",
 			strokeWidth: 10,
 			rounded: true,
-			x1: x, y1: y,
-			x2: lastX, y2: lastY
+			x1: point.x, y1: point.y,
+			x2: lastPoint.x, y2: lastPoint.y
 		});
 
-		lastX = x;
-		lastY = y;
+		lastPoint = point;
+	}
+
+	function drawBezier(points) {
+		$("#layer1").draw(function(ctx) {
+			ctx.fillStyle = "#000";
+			ctx.lineWidth = 10;
+			ctx.beginPath();
+			ctx.moveTo(points[0].x, points[0].y);
+
+			for (var i = 1; i < points.length - 2; i++) {
+				var xc = (points[i].x + points[i+1].x) / 2;
+				var yc = (points[i].y + points[i+1].y) / 2;
+				ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+			}
+
+			ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
+			ctx.lineCap = "round";
+			ctx.stroke();
+		});
 	}
 });
