@@ -54,7 +54,7 @@ init = (function() {
 	});
 
 	// draw buttons
-	$("#draw-nav .clear").on("click", function() {
+	$("#draw-nav .clear").on("click touchend", function() {
 		$("canvas").clearCanvas();
 	});
 
