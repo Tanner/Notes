@@ -72,3 +72,7 @@ html {
 #outline .btn-group {
 	float: right;
 }
+
+#outline .btn-group.hidden {
+	display: none;
+}
