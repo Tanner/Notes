@@ -1,10 +1,10 @@
 $(document).ready(function() {
-	$("#outline li").click(function() {
-		selectRow($(this));
-	});
-
 	$("#outline li input").focus(function() {
 		selectRow($(this).parents("li"));
+	});
+
+	$("#outline li input").blur(function() {
+		deselectRow($(this).parents("li"));
 	});
 
 	$("#outline li .btn-delete").click(function() {
@@ -15,6 +15,10 @@ $(document).ready(function() {
 function selectRow(row) {
 	row.children(".btn-group").removeClass("hidden");
 	row.siblings().children(".btn-group").addClass("hidden");
+}
+
+function deselectRow(row) {
+	row.children(".btn-group").addClass("hidden");
 }
 
 function deleteRow(row) {
