@@ -8,6 +8,14 @@ var POINT = (function(x, y) {
 	my.x = x;
 	my.y = y;
 
+	my.inside = function(el) {
+		if (my.x >= el.offset().left && my.x <= el.offset().left + el.outerWidth()
+			&& my.y >= el.offset().top && my.y <= el.offset().top + el.outerHeight())
+			return true;
+
+		return false;
+	}
+
 	return my;
 });
 
@@ -18,19 +26,19 @@ init = (function() {
 	var drawingPoints = [];
 
 	// touch events
-	$("body").on('touchstart mousedown', function(e) {
-		if (!event.which || event.which == 1)
+	$("canvas").on('touchstart mousedown', function(e) {
+		if (!e.which || e.which == 1)
 			down = true;
 	});
 
 	$("body").bind('touchmove mousemove', function (e) {
+		e.preventDefault();
+
 		if (!down)
 			return;
 
 		var touch = e.originalEvent.touches ? e.originalEvent.touches[0] : e;
 		addPoint(POINT(touch.pageX, touch.pageY));
-
-		e.preventDefault();
 	});
 
 	$("body").on('touchend mouseup mouseleave', function(e) {
@@ -54,8 +62,23 @@ init = (function() {
 	});
 
 	// draw buttons
-	$("#draw-nav .clear").on("click touchend", function() {
-		$("canvas").clearCanvas();
+	$("#draw-nav li.clear").on("touchend mouseup", function(e) {
+		if ($(this).hasClass('select'))
+			$("canvas").clearCanvas();
+	});
+
+	$("#draw-nav li").on("touchstart mousedown", function(e) {
+		$(this).addClass('select');
+	});
+
+	$("#draw-nav li").on("touchmove", function(e) {
+		var touch = (e.originalEvent.touches && e.originalEvent.touches.length > 0) ? e.originalEvent.touches[0] : e;
+		if (!POINT(touch.pageX, touch.pageY).inside($(this)))
+			$(this).removeClass('select');
+	});
+
+	$("#draw-nav li").on("mouseleave", function(e) {
+		$(this).removeClass('select');
 	});
 
 	function addPoint(point) {
