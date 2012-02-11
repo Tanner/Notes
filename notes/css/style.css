@@ -1,5 +1,7 @@
 html {
 	-webkit-text-size-adjust: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .container-fluid {
@@ -53,11 +55,6 @@ html {
 
 #outline input:focus {
 	border: 1px solid #b1b1b1;
-}
-
-#outline .btn {
-	-webkit-user-select: none;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 #outline .btn-small {
