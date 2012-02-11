@@ -28,9 +28,11 @@ $(document).ready(function() {
 		deselectRow($(this).parents("li"));
 	});
 
-	$("#outline li input").live('keyup', function(event) {
+	$("#outline li input").live('keydown', function(event) {
 		if (event.keyCode == 13) {
 			addNewRowAfter();
+		} else if (event.keyCode == 9) {
+			indentRow();
 		}
 	});
 
@@ -86,4 +88,9 @@ function addNewRowAfter() {
 	currentRow.after(ROW);
 
 	$("#outline li.new").removeClass("new").children("input").focus();
+}
+
+function indentRow() {
+	currentRow.wrap("<ul>");
+	selectRow(currentRow);
 }
