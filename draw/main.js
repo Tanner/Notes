@@ -15,20 +15,29 @@ init = (function() {
 	var lastX = null;
 	var laxtY = null;
 
+	var down = false;
+
 	// touch events
-	$("body").on('touchstart', function(e) {
+	$("body").on('touchstart mousedown', function(e) {
+		down = true;
 	});
 
-	$("body").bind('touchmove', function (e) {
-		var touch = e.originalEvent.touches[0];
+	$("body").bind('touchmove mousemove', function (e) {
+		if (!down) {
+			return;
+		}
+
+		var touch = e.originalEvent.touches ? e.originalEvent.touches[0] : e;
 		addPoint(touch.pageX, touch.pageY);
 
 		e.preventDefault();
 	});
 
-	$("body").on('touchend', function(e) {
+	$("body").on('touchend mouseup', function(e) {
 		lastX = null;
 		lastY = null;
+
+		down = false;
 	});
 
 	// handle resizing
