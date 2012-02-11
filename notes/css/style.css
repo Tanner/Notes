@@ -17,6 +17,7 @@ html {
 
 	padding-top: 0px;
 	padding-bottom: 0px;
+	margin-bottom: 2px;
 
 	line-height: 40px;
 	font-size: 20px;
@@ -25,7 +26,7 @@ html {
 #outline input {
 	position: absolute;
 	left: 0;
-	right: 135px; /* width of button */
+	right: 131px; /* width of button */
 	top: 0;
 	bottom: 0;
 
@@ -46,12 +47,7 @@ html {
 }
 
 #outline input:focus {
-	color: #000;
-
-	border-color: none;
-
-	-webkit-box-shadow: none;
-	box-shadow: none;
+	border: 1px solid #b1b1b1;
 }
 
 #outline .btn {
@@ -61,8 +57,8 @@ html {
 
 #outline .btn-small {
 	padding: 11px 9px;
-	font-size: 15px;
-	line-height: 15px;
+	font-size: 17px;
+	line-height: 17px;
 }
 
 #outline .btn.btn-delete {
@@ -71,6 +67,10 @@ html {
 
 #outline .btn-group {
 	float: right;
+}
+
+#outline .btn-group .btn:first-child {
+	-webkit-border-radius: 0;
 }
 
 #outline .btn-group.hidden {
