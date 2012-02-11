@@ -26,22 +26,26 @@ init = (function() {
 	var drawingPoints = [];
 
 	// touch events
-	$("canvas").on('touchstart mousedown', function(e) {
-		if (!e.which || e.which == 1)
+	$("canvas").on('touchstart', function(e) {
+		if (!e.which || e.which == 1) {
 			down = true;
+
+			var touch = e.originalEvent.touches ? e.originalEvent.touches[0] : e;
+			addPoint(POINT(touch.pageX, touch.pageY));
+		}
 	});
 
-	$("body").bind('touchmove mousemove', function (e) {
+	$("body").bind('touchmove', function (e) {
 		e.preventDefault();
 
 		if (!down)
 			return;
-
+		
 		var touch = e.originalEvent.touches ? e.originalEvent.touches[0] : e;
 		addPoint(POINT(touch.pageX, touch.pageY));
 	});
 
-	$("body").on('touchend mouseup mouseleave', function(e) {
+	$("body").on('touchend', function(e) {
 		$("#layer2").clearCanvas();
 
 		if (drawingPoints.length > 0) {
@@ -58,7 +62,7 @@ init = (function() {
 	var maxSide = 1024; //Math.max(window.innerWidth, window.innerHeight);
     $("canvas").each(function() {
 	    $(this)[0].width = minSide + 20;
-	    $(this)[0].height = minSide
+	    $(this)[0].height = minSide;
 	});
 
 	// draw buttons
@@ -100,22 +104,30 @@ init = (function() {
 	}
 
 	function drawBezier(points) {
-		$("#layer1").draw(function(ctx) {
-			ctx.fillStyle = "#000";
-			ctx.lineWidth = 10;
-			ctx.beginPath();
-			ctx.moveTo(points[0].x, points[0].y);
+		if (points.length > 1) {
+			$("#layer1").draw(function(ctx) {
+				ctx.fillStyle = "#000";
+				ctx.lineWidth = 10;
+				ctx.beginPath();
+				ctx.moveTo(points[0].x, points[0].y);
 
-			for (var i = 1; i < points.length - 2; i++) {
-				var xc = (points[i].x + points[i+1].x) / 2;
-				var yc = (points[i].y + points[i+1].y) / 2;
-				ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-			}
+				for (var i = 1; i < points.length - 2; i++) {
+					var xc = (points[i].x + points[i+1].x) / 2;
+					var yc = (points[i].y + points[i+1].y) / 2;
+					ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+				}
 
-			if (points[i+1])
 				ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
-			ctx.lineCap = "round";
-			ctx.stroke();
-		});
+				ctx.lineCap = "round";
+				ctx.stroke();
+			});
+		} else if (points.length == 1) {
+			$("#layer1").draw(function(ctx) {
+				ctx.fillStyle = "#000";
+				ctx.beginPath();
+				ctx.arc(points[0].x, points[0].y, 5, 0, 2 * Math.PI, false);
+				ctx.fill();
+			});
+		}
 	}
 });
