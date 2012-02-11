@@ -58,8 +58,6 @@ function selectRow(row) {
 function deselectRow(row) {
 	row.children(".btn-group").addClass("hidden");
 	row.children("input").removeClass("focus");
-
-	currentRow = null;
 }
 
 function deleteRow(row) {
