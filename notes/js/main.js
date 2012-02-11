@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	$("#outline li").on('touchstart', function() {
+		selectRow($(this));
+		$(this).children("input").focus();
+	});
+
 	$("#outline li input").focus(function() {
 		selectRow($(this).parents("li"));
 	});
