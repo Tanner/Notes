@@ -53,7 +53,7 @@ html {
 	transition: none;
 }
 
-#outline input:focus {
+#outline input.focus {
 	border: 1px solid #b1b1b1;
 }
 
