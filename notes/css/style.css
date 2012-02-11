@@ -40,10 +40,13 @@ html {
 
 	font-size: 20px;
 
-	border: 0 solid #000;
+	border: 1px solid #fff;
 
 	-webkit-box-shadow: none;
 	box-shadow: none;
+
+	-webkit-transition: none;
+	transition: none;
 }
 
 #outline input:focus {
