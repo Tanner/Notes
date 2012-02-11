@@ -46,6 +46,10 @@ input:focus {
 	box-shadow: none;
 }
 
+.btn {
+	-webkit-user-select: none;
+}
+
 .btn-small {
 	padding: 5px 9px;
 	font-size: 13px;
