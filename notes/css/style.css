@@ -1,3 +1,7 @@
+html {
+	-webkit-text-size-adjust: none;
+}
+
 .container-fluid {
 	padding-top: 20px;
 }
@@ -14,22 +18,26 @@
 	padding-top: 0px;
 	padding-bottom: 0px;
 
-	line-height: 28px;
+	line-height: 40px;
+	font-size: 20px;
 }
 
 #outline input {
 	position: absolute;
 	left: 0;
 	right: 83px; /* width of button */
-	top: 5px;
+	top: 0;
 	bottom: 0;
 
+	height: 40px;
 	width: auto;
 
 	margin-bottom: 0px;
 	padding: 0;
 
 	color: #000;
+
+	font-size: 20px;
 
 	border: 0 solid #000;
 
@@ -48,12 +56,13 @@
 
 #outline .btn {
 	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 #outline .btn-small {
 	padding: 5px 9px;
-	font-size: 13px;
-	line-height: 16px;
+	font-size: 15px;
+	line-height: 28px;
 }
 
 #outline .btn-draw {
