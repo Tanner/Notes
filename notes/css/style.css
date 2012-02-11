@@ -1,0 +1,43 @@
+.container-fluid {
+	padding-top: 20px;
+}
+
+#title {
+	border-bottom: 1px solid #d1d1d1;
+
+	margin-bottom: 10px;
+}
+
+li {
+	padding-top: 0px;
+	padding-bottom: 0px;
+
+	line-height: 28px;
+}
+
+input {
+	color: #000;
+
+	margin-bottom: 0px;
+	padding: 0;
+
+	border: 0 solid #000;
+
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+input:focus {
+	color: #000;
+
+	border-color: none;
+
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.btn-small {
+	padding: 5px 9px;
+	font-size: 13px;
+	line-height: 16px;
+}
