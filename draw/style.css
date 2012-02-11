@@ -13,7 +13,7 @@ body {
 	height: 100%;
 
 	font-family: Helvetica, sans-serif;
-	background: #fff;
+	background: rgba(0, 0, 0, .5);
 	font-size: 21px;
 
 	-webkit-text-size-adjust: 100%;
@@ -39,6 +39,11 @@ canvas {
 	right: 0;
 	bottom: 0;
 	translateZ: 0;
+}
+
+#layer1 {
+	background: #fff;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
 
 #layer2 {
