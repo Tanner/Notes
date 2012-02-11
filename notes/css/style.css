@@ -58,9 +58,14 @@ html {
 }
 
 #outline .btn-small {
-	padding: 11px 9px;
+	padding: 10px 9px 12px;
 	font-size: 17px;
 	line-height: 17px;
+	height: 18px;
+}
+
+#outline .btn i {
+	margin-top: 3px;
 }
 
 #outline .btn.btn-delete {
@@ -68,7 +73,9 @@ html {
 }
 
 #outline .btn-group {
-	float: right;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 #outline .btn-group .btn:first-child {
