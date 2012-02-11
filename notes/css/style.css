@@ -9,6 +9,8 @@
 }
 
 li {
+	position: relative;
+
 	padding-top: 0px;
 	padding-bottom: 0px;
 
@@ -16,10 +18,18 @@ li {
 }
 
 input {
-	color: #000;
+	position: absolute;
+	left: 0;
+	right: 83px; /* width of button */
+	top: 5px;
+	bottom: 0;
+
+	width: auto;
 
 	margin-bottom: 0px;
 	padding: 0;
+
+	color: #000;
 
 	border: 0 solid #000;
 
@@ -40,4 +50,8 @@ input:focus {
 	padding: 5px 9px;
 	font-size: 13px;
 	line-height: 16px;
+}
+
+.btn-draw {
+	float: right;
 }
