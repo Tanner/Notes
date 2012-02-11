@@ -33,7 +33,7 @@ init = (function() {
 		e.preventDefault();
 	});
 
-	$("body").on('touchend mouseup', function(e) {
+	$("body").on('touchend mouseup mouseleave', function(e) {
 		lastX = null;
 		lastY = null;
 
