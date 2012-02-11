@@ -1,4 +1,4 @@
-const ROW = '<li> \
+const ROW = '<li class="new"> \
 				<input type="text" placeholder="Type your text here..."> \
 				<div class="btn-group hidden"> \
 					<a href="#" class="btn btn-small"><i class="icon-pencil"></i> Draw</a> \
@@ -10,16 +10,16 @@ var deleteButtonClick = false;
 var currentRow = null;
 
 $(document).ready(function() {
-	$("#outline li").on('touchstart', function() {
+	$("#outline li").live('touchstart', function() {
 		selectRow($(this));
 		$(this).children("input").focus();
 	});
 
-	$("#outline li input").focus(function() {
+	$("#outline li input").live('focus', function() {
 		selectRow($(this).parents("li"));
 	});
 
-	$("#outline li input").blur(function() {
+	$("#outline li input").live('blur', function() {
 		if (deleteButtonClick) {
 			deleteButtonClick = false
 			return;
@@ -28,21 +28,22 @@ $(document).ready(function() {
 		deselectRow($(this).parents("li"));
 	});
 
-	$("#outline li input").keyup(function(event) {
+	$("#outline li input").live('keyup', function(event) {
 		if (event.keyCode == 13) {
 			addNewRowAfter();
 		}
 	});
 
-	$("#outline li .btn-delete").click(function() {
-		deleteRow($(this));
-		deleteButtonClick = false
-	})
-
-	$("#outline li .btn-delete").mousedown(function() {
-		deleteButtonClick = true;
+	$("#outline li .btn-delete").live({
+		click: function() {
+			deleteRow($(this));
+			deleteButtonClick = false
+		},
+		mousedown: function() {
+			deleteButtonClick = true;
+		}
 	});
-})
+});	
 
 function selectRow(row) {
 	row.children(".btn-group").removeClass("hidden");
@@ -85,4 +86,6 @@ function addNewRowAfter() {
 	}
 
 	currentRow.after(ROW);
+
+	$("#outline li.new").removeClass("new").children("input").focus();
 }
