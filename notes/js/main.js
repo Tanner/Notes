@@ -7,7 +7,9 @@ $(document).ready(function() {
 		selectRow($(this).parents("li"));
 	});
 
-	$("#outline li .btn-delete").click(deleteRow);
+	$("#outline li .btn-delete").click(function() {
+		deleteRow($(this));
+	});
 })
 
 function selectRow(row) {
@@ -15,18 +17,20 @@ function selectRow(row) {
 	row.siblings().children(".btn-group").addClass("hidden");
 }
 
-function deleteRow() {
-	var next = $(this).parents("li").next();
+function deleteRow(row) {
+	var listItem = row.parents("li");
+
+	var next = listItem.next();
 
 	if (next.length >= 1) {
 		selectRow(next.eq(0));
 	} else {
-		var previous = $(this).parents("li").prev();
+		var previous = listItem.prev();
 
 		if (previous.length >= 1) {
 			selectRow(previous.eq(0));
 		}
 	}
 
-	$(this).parents("li").remove()
+	listItem.remove()
 }
