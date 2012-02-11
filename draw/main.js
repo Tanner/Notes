@@ -46,10 +46,10 @@ init = (function() {
 	});
 
 	// set canvas size
-	var minSide = Math.min(window.innerWidth, window.innerHeight);
-	var maxSide = Math.max(window.innerWidth, window.innerHeight);
+	var minSide = 748; //Math.min(window.innerWidth, window.innerHeight);
+	var maxSide = 1024; //Math.max(window.innerWidth, window.innerHeight);
     $("canvas").each(function() {
-	    $(this)[0].width = minSide;
+	    $(this)[0].width = minSide + 20;
 	    $(this)[0].height = minSide
 	});
 
