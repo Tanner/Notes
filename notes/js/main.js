@@ -1,4 +1,13 @@
+const ROW = '<li> \
+				<input type="text" placeholder="Type your text here..."> \
+				<div class="btn-group hidden"> \
+					<a href="#" class="btn btn-small"><i class="icon-pencil"></i> Draw</a> \
+					<a href="#" class="btn btn-small btn-danger btn-delete"><i class="icon-trash icon-white"></i></a> \
+				</div> \
+			</li>';
+
 var deleteButtonClick = false;
+var currentRow = null;
 
 $(document).ready(function() {
 	$("#outline li").on('touchstart', function() {
@@ -19,6 +28,12 @@ $(document).ready(function() {
 		deselectRow($(this).parents("li"));
 	});
 
+	$("#outline li input").keyup(function(event) {
+		if (event.keyCode == 13) {
+			addNewRowAfter();
+		}
+	});
+
 	$("#outline li .btn-delete").click(function() {
 		deleteRow($(this));
 		deleteButtonClick = false
@@ -33,6 +48,8 @@ function selectRow(row) {
 	row.children(".btn-group").removeClass("hidden");
 	row.children("input").addClass("focus");
 
+	currentRow = row;
+
 	row.siblings().children(".btn-group").addClass("hidden");
 	row.siblings().children("input").removeClass("focus");
 }
@@ -40,6 +57,8 @@ function selectRow(row) {
 function deselectRow(row) {
 	row.children(".btn-group").addClass("hidden");
 	row.children("input").removeClass("focus");
+
+	currentRow = null;
 }
 
 function deleteRow(row) {
@@ -58,4 +77,12 @@ function deleteRow(row) {
 	}
 
 	listItem.remove()
+}
+
+function addNewRowAfter() {
+	if (!currentRow) {
+		return;
+	}
+
+	currentRow.after(ROW);
 }
