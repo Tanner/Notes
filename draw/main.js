@@ -19,13 +19,13 @@ init = (function() {
 
 	// touch events
 	$("body").on('touchstart mousedown', function(e) {
-		down = true;
+		if (!event.which || event.which == 1)
+			down = true;
 	});
 
 	$("body").bind('touchmove mousemove', function (e) {
-		if (!down) {
+		if (!down)
 			return;
-		}
 
 		var touch = e.originalEvent.touches ? e.originalEvent.touches[0] : e;
 		addPoint(POINT(touch.pageX, touch.pageY));
@@ -36,8 +36,10 @@ init = (function() {
 	$("body").on('touchend mouseup mouseleave', function(e) {
 		$("#layer2").clearCanvas();
 
-		drawBezier(drawingPoints);
-		drawingPoints = [];
+		if (drawingPoints.length > 0) {
+			drawBezier(drawingPoints);
+			drawingPoints = [];
+		}
 
 		lastPoint = null;
 		down = false;
@@ -80,7 +82,8 @@ init = (function() {
 				ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
 			}
 
-			ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
+			if (points[i+1])
+				ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
 			ctx.lineCap = "round";
 			ctx.stroke();
 		});
