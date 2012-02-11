@@ -3,6 +3,10 @@ $(document).ready(function() {
 		selectRow($(this));
 	});
 
+	$("#outline li input").focus(function() {
+		selectRow($(this).parents("li"));
+	});
+
 	$("#outline li .btn-delete").click(deleteRow);
 })
 
