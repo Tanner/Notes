@@ -8,10 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTDetailViewController : UIViewController <UISplitViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@protocol RTDetailViewControllerDelegate;
+
+@interface RTDetailViewController : UIViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) id<RTDetailViewControllerDelegate> delegate;
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@end
+
+
+@protocol RTDetailViewControllerDelegate <NSObject>
+
+- (NSManagedObjectContext *)managedObjectContext;
 
 @end

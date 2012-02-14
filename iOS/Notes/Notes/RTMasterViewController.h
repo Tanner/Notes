@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTDetailViewController.h"
 
 @class RTDetailViewController;
 
 #import <CoreData/CoreData.h>
 
-@interface RTMasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface RTMasterViewController : UITableViewController <NSFetchedResultsControllerDelegate, RTDetailViewControllerDelegate>
 
 @property (strong, nonatomic) RTDetailViewController *detailViewController;
 

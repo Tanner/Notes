@@ -43,6 +43,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.detailViewController = (RTDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController.delegate = self;
     // Set up the edit and add buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
@@ -144,8 +145,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Outline *selectedObject = (Outline *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
-        
-    NSLog(@"%@", [[[selectedObject children] firstObject] content]);
     
     self.detailViewController.detailItem = selectedObject;    
 }
@@ -270,10 +269,6 @@
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
     [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-        
-    ListItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"ListItem" inManagedObjectContext:context];
-    [item setValue:@"foo" forKey:@"content"];
-    [(Outline *)newManagedObject addChildrenObject:item];
         
     // Save the context.
     NSError *error = nil;

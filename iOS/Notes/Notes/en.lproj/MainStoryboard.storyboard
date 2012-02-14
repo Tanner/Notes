@@ -125,6 +125,7 @@
         <class className="RTDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RTDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addButtonPressed:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

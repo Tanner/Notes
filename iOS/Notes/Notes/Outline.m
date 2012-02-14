@@ -22,4 +22,10 @@
     self.children = tempSet;
 }
 
+- (void)removeChildrenAtIndexes:(NSIndexSet *)indexes {
+    NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.children];
+    [tempSet removeObjectsAtIndexes:indexes];
+    self.children = tempSet;
+}
+
 @end
