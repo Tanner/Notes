@@ -10,6 +10,9 @@
 
 #import "RTDetailViewController.h"
 
+#import "Outline.h"
+#import "ListItem.h"
+
 @interface RTMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
@@ -140,7 +143,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    Outline *selectedObject = (Outline *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+        
+    NSLog(@"%@", [[[selectedObject children] firstObject] content]);
+    
     self.detailViewController.detailItem = selectedObject;    
 }
 
@@ -156,7 +162,7 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Outline" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -264,7 +270,11 @@
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
     [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    
+        
+    ListItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"ListItem" inManagedObjectContext:context];
+    [item setValue:@"foo" forKey:@"content"];
+    [(Outline *)newManagedObject addChildrenObject:item];
+        
     // Save the context.
     NSError *error = nil;
     if (![context save:&error]) {

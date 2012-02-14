@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface RTDetailViewController : UIViewController <UISplitViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) id detailItem;
 
-@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
