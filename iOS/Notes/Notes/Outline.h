@@ -2,7 +2,7 @@
 //  Outline.h
 //  Notes
 //
-//  Created by Smith Tanner on 2/11/12.
+//  Created by Ryan Ashcraft on 2/14/12.
 //  Copyright (c) 2012 TS Software. All rights reserved.
 //
 
@@ -12,8 +12,6 @@
 @class ListItem;
 
 @interface Outline : NSManagedObject
-
-- (void)addChildrenObject:(ListItem *)value;
 
 @property (nonatomic, retain) NSDate * timeStamp;
 @property (nonatomic, retain) NSString * title;

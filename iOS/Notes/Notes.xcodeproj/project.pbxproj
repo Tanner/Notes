@@ -24,8 +24,9 @@
 		C35EAE3814E75BF800CDA6EF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35EAE1414E75BF800CDA6EF /* CoreData.framework */; };
 		C35EAE4014E75BF800CDA6EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C35EAE3E14E75BF800CDA6EF /* InfoPlist.strings */; };
 		C35EAE4314E75BF800CDA6EF /* NotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C35EAE4214E75BF800CDA6EF /* NotesTests.m */; };
-		C35EAE4E14E7626200CDA6EF /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C35EAE4D14E7626200CDA6EF /* ListItem.m */; };
-		C35EAE5114E765C100CDA6EF /* Outline.m in Sources */ = {isa = PBXBuildFile; fileRef = C35EAE5014E765C100CDA6EF /* Outline.m */; };
+		ED503D8314EAFD3200B59F17 /* OutlineSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = ED503D8214EAFD3200B59F17 /* OutlineSupport.m */; };
+		ED503D8A14EAFE4C00B59F17 /* Outline.m in Sources */ = {isa = PBXBuildFile; fileRef = ED503D8914EAFE4C00B59F17 /* Outline.m */; };
+		ED503D8D14EAFE9800B59F17 /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ED503D8C14EAFE9800B59F17 /* ListItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,10 +63,11 @@
 		C35EAE3F14E75BF800CDA6EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C35EAE4114E75BF800CDA6EF /* NotesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotesTests.h; sourceTree = "<group>"; };
 		C35EAE4214E75BF800CDA6EF /* NotesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotesTests.m; sourceTree = "<group>"; };
-		C35EAE4C14E7626200CDA6EF /* ListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListItem.h; sourceTree = "<group>"; };
-		C35EAE4D14E7626200CDA6EF /* ListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListItem.m; sourceTree = "<group>"; };
-		C35EAE4F14E765C100CDA6EF /* Outline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Outline.h; sourceTree = "<group>"; };
-		C35EAE5014E765C100CDA6EF /* Outline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Outline.m; sourceTree = "<group>"; };
+		ED503D8214EAFD3200B59F17 /* OutlineSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineSupport.m; sourceTree = "<group>"; };
+		ED503D8814EAFE4C00B59F17 /* Outline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Outline.h; sourceTree = "<group>"; };
+		ED503D8914EAFE4C00B59F17 /* Outline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Outline.m; sourceTree = "<group>"; };
+		ED503D8B14EAFE9800B59F17 /* ListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListItem.h; sourceTree = "<group>"; };
+		ED503D8C14EAFE9800B59F17 /* ListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,10 +138,11 @@
 				C35EAE2B14E75BF800CDA6EF /* RTDetailViewController.h */,
 				C35EAE2C14E75BF800CDA6EF /* RTDetailViewController.m */,
 				C35EAE2514E75BF800CDA6EF /* Notes.xcdatamodeld */,
-				C35EAE4F14E765C100CDA6EF /* Outline.h */,
-				C35EAE5014E765C100CDA6EF /* Outline.m */,
-				C35EAE4C14E7626200CDA6EF /* ListItem.h */,
-				C35EAE4D14E7626200CDA6EF /* ListItem.m */,
+				ED503D8B14EAFE9800B59F17 /* ListItem.h */,
+				ED503D8C14EAFE9800B59F17 /* ListItem.m */,
+				ED503D8814EAFE4C00B59F17 /* Outline.h */,
+				ED503D8914EAFE4C00B59F17 /* Outline.m */,
+				ED503D8214EAFD3200B59F17 /* OutlineSupport.m */,
 				C35EAE1714E75BF800CDA6EF /* Supporting Files */,
 			);
 			path = Notes;
@@ -287,8 +290,9 @@
 				C35EAE2714E75BF800CDA6EF /* Notes.xcdatamodeld in Sources */,
 				C35EAE2A14E75BF800CDA6EF /* RTMasterViewController.m in Sources */,
 				C35EAE2D14E75BF800CDA6EF /* RTDetailViewController.m in Sources */,
-				C35EAE4E14E7626200CDA6EF /* ListItem.m in Sources */,
-				C35EAE5114E765C100CDA6EF /* Outline.m in Sources */,
+				ED503D8314EAFD3200B59F17 /* OutlineSupport.m in Sources */,
+				ED503D8A14EAFE4C00B59F17 /* Outline.m in Sources */,
+				ED503D8D14EAFE9800B59F17 /* ListItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +464,7 @@
 				C35EAE4814E75BF900CDA6EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C35EAE4914E75BF900CDA6EF /* Build configuration list for PBXNativeTarget "NotesTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +473,7 @@
 				C35EAE4B14E75BF900CDA6EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

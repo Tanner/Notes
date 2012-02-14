@@ -2,7 +2,7 @@
 //  Outline.m
 //  Notes
 //
-//  Created by Smith Tanner on 2/11/12.
+//  Created by Ryan Ashcraft on 2/14/12.
 //  Copyright (c) 2012 TS Software. All rights reserved.
 //
 
@@ -15,17 +15,5 @@
 @dynamic timeStamp;
 @dynamic title;
 @dynamic children;
-
-- (void)addChildrenObject:(ListItem *)value {
-    NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.children];
-    [tempSet addObject:value];
-    self.children = tempSet;
-}
-
-- (void)removeChildrenAtIndexes:(NSIndexSet *)indexes {
-    NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.children];
-    [tempSet removeObjectsAtIndexes:indexes];
-    self.children = tempSet;
-}
 
 @end

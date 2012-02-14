@@ -2,18 +2,19 @@
 //  ListItem.m
 //  Notes
 //
-//  Created by Smith Tanner on 2/11/12.
+//  Created by Ryan Ashcraft on 2/14/12.
 //  Copyright (c) 2012 TS Software. All rights reserved.
 //
 
 #import "ListItem.h"
-#import "ListItem.h"
+#import "Outline.h"
 
 
 @implementation ListItem
 
 @dynamic content;
-@dynamic children;
+@dynamic indent;
+@dynamic index;
 @dynamic parent;
 
 @end
