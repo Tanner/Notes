@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "RTListItemCell.h"
 
 @protocol RTDetailViewControllerDelegate;
 
-@interface RTDetailViewController : UIViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface RTDetailViewController : UIViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, RTListItemCellDelegate>
 
 @property (weak, nonatomic) id<RTDetailViewControllerDelegate> delegate;
 

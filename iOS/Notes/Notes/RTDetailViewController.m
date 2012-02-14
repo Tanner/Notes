@@ -8,6 +8,7 @@
 
 #import "RTDetailViewController.h"
 #import "Outline.h"
+#import "RTListItemCell.h"
 
 @interface RTDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -21,7 +22,23 @@
 @synthesize tableView = _tableView;
 @synthesize masterPopoverController = _masterPopoverController;
 @synthesize fetchedResultsController = __fetchedResultsController;
+
+RTListItemCell *_currentCell;
 BOOL _needsNewFetchRequest;
+
+#pragma mark - List Item Cell Delegate
+
+- (void)contentMightChangeInCell:(RTListItemCell *)cell {
+    _currentCell = cell;
+}
+
+- (void)content:(NSString *)newContent changedInCell:(RTListItemCell *)cell {
+    NSManagedObject *listItem = [[_detailItem children] objectAtIndex:[_tableView indexPathForCell:cell].row];
+    [listItem setValue:newContent forKey:@"content"];
+    [self.fetchedResultsController.managedObjectContext save:nil];
+    
+    _currentCell = nil;
+}
 
 #pragma mark - Fetched results controller
 
@@ -138,7 +155,9 @@ BOOL _needsNewFetchRequest;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"%d", [[managedObject valueForKey:@"index"] intValue]];
+    RTListItemCell *listItemCell = (RTListItemCell *)cell;
+    NSString *content = [managedObject valueForKey:@"content"];
+    listItemCell.textField.text = content;
 }
 
 - (void)insertNewObject
@@ -171,19 +190,18 @@ BOOL _needsNewFetchRequest;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TableViewCell"];
+        cell = [[RTListItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TableViewCell"];
     }
+    [(RTListItemCell *)cell setDelegate:self];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[self.fetchedResultsController sections] count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
@@ -198,10 +216,18 @@ BOOL _needsNewFetchRequest;
     }    
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[(RTListItemCell *)[_tableView cellForRowAtIndexPath:indexPath] textField] becomeFirstResponder];
+}
+
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
-{
+- (void)setDetailItem:(id)newDetailItem {
+    if (_currentCell) {
+        [_currentCell setDelegate:nil];
+        [self content:[[_currentCell textField] text] changedInCell:_currentCell];
+    }
+    
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         _needsNewFetchRequest = YES;
@@ -211,6 +237,7 @@ BOOL _needsNewFetchRequest;
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }
     
+    _currentCell = nil;
     [_tableView reloadData];
 }
 
